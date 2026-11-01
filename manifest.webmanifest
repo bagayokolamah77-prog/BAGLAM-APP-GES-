@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "Gestion Boutique Pro",
+  "short_name": "Boutique Pro",
+  "description": "Ventes, stocks, clients et équipe de vos boutiques, synchronisés entre tous vos appareils.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a1229",
+  "theme_color": "#667eea",
+  "categories": ["business", "productivity", "finance"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

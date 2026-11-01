@@ -1,0 +1,31 @@
+GESTION BOUTIQUE PRO - DOSSIER D'HEBERGEMENT FIREBASE
+=====================================================
+
+Adresse de l'application une fois en ligne :
+    https://baglam-app-ges.web.app
+
+AVANT LA PREMIERE MISE EN LIGNE (une seule fois, console Firebase)
+  1. Firestore Database > Creer une base de donnees (mode production).
+  2. Authentication > Commencer > Methode de connexion > Anonyme > Activer.
+  3. Installer Node.js (version LTS) : https://nodejs.org
+
+METTRE EN LIGNE
+  - Windows : double-cliquer sur deployer.bat
+  - Ou, dans un terminal ouvert dans ce dossier :
+        npm install -g firebase-tools   (une seule fois)
+        firebase login                  (une seule fois)
+        firebase deploy
+
+METTRE A JOUR L'APPLICATION
+  Remplacer public\index.html par la nouvelle version, puis relancer deployer.bat
+  (ou : firebase deploy --only hosting).
+
+CONTENU
+  public\               fichiers publies (application, icones, mode hors ligne)
+  firebase.json         reglages de l'hebergement
+  .firebaserc           lien vers le projet baglam-app-ges
+  firestore.rules       regles de securite de la base de donnees
+  firestore.indexes.json index de la base
+  deployer.bat          mise en ligne en un double-clic
+
+Le guide complet (pas a pas, depannage) accompagne ce dossier.

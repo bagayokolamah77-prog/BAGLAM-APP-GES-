@@ -1,0 +1,6 @@
+# Fichiers créés par l'outil Firebase — ne pas partager
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+node_modules/

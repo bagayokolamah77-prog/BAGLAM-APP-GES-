@@ -1,0 +1,38 @@
+rules_version = '2';
+
+// Règles de sécurité Firestore — Gestion Boutique Pro
+// À coller dans : Console Firebase › Firestore Database › Règles › Publier
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Données de l'application : gbp/v1/{collection}/{document}
+    match /gbp/v1/{coll}/{docId} {
+
+      function collectionAutorisee() {
+        return coll in ['kv', 'magasins', 'users', 'categories', 'produits', 'clients',
+                        'fournisseurs', 'ventes', 'factures', 'commandes', 'bonCommandes',
+                        'notifications', 'journal'];
+      }
+
+      function documentValide() {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['json', 't', 'by', 'deleted'])
+          && d.t == request.time                       // horodatage serveur obligatoire
+          && d.by is string && d.by.size() < 40
+          && d.deleted is bool
+          && (d.deleted == true || (d.json is string && d.json.size() < 1000000));
+      }
+
+      // Seuls les appareils connectés à Firebase (connexion anonyme de l'app)
+      allow read: if request.auth != null && collectionAutorisee();
+      allow create, update: if request.auth != null && collectionAutorisee() && documentValide();
+      // Les suppressions passent par un marquage "deleted", jamais par un effacement réel
+      allow delete: if false;
+    }
+
+    // Tout le reste est interdit
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
